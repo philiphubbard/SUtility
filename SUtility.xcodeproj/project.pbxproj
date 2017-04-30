@@ -8,8 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		D344C3541EB648CE0007E788 /* SUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D344C34A1EB648CE0007E788 /* SUtility.framework */; };
-		D344C3591EB648CE0007E788 /* SUtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344C3581EB648CE0007E788 /* SUtilityTests.swift */; };
 		D344C35B1EB648CE0007E788 /* SUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = D344C34D1EB648CE0007E788 /* SUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D344C3661EB6494E0007E788 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344C3641EB6494E0007E788 /* Animation.swift */; };
+		D344C3671EB6494E0007E788 /* RunningAverage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344C3651EB6494E0007E788 /* RunningAverage.swift */; };
+		D344C36A1EB6496A0007E788 /* TestAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344C3681EB6496A0007E788 /* TestAnimation.swift */; };
+		D344C36B1EB6496A0007E788 /* TestRunningAverage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344C3691EB6496A0007E788 /* TestRunningAverage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,8 +30,11 @@
 		D344C34D1EB648CE0007E788 /* SUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SUtility.h; sourceTree = "<group>"; };
 		D344C34E1EB648CE0007E788 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D344C3531EB648CE0007E788 /* SUtilityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SUtilityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D344C3581EB648CE0007E788 /* SUtilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SUtilityTests.swift; sourceTree = "<group>"; };
 		D344C35A1EB648CE0007E788 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D344C3641EB6494E0007E788 /* Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
+		D344C3651EB6494E0007E788 /* RunningAverage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunningAverage.swift; sourceTree = "<group>"; };
+		D344C3681EB6496A0007E788 /* TestAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestAnimation.swift; sourceTree = "<group>"; };
+		D344C3691EB6496A0007E788 /* TestRunningAverage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestRunningAverage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +77,8 @@
 		D344C34C1EB648CE0007E788 /* SUtility */ = {
 			isa = PBXGroup;
 			children = (
+				D344C3641EB6494E0007E788 /* Animation.swift */,
+				D344C3651EB6494E0007E788 /* RunningAverage.swift */,
 				D344C34D1EB648CE0007E788 /* SUtility.h */,
 				D344C34E1EB648CE0007E788 /* Info.plist */,
 			);
@@ -80,7 +88,8 @@
 		D344C3571EB648CE0007E788 /* SUtilityTests */ = {
 			isa = PBXGroup;
 			children = (
-				D344C3581EB648CE0007E788 /* SUtilityTests.swift */,
+				D344C3681EB6496A0007E788 /* TestAnimation.swift */,
+				D344C3691EB6496A0007E788 /* TestRunningAverage.swift */,
 				D344C35A1EB648CE0007E788 /* Info.plist */,
 			);
 			path = SUtilityTests;
@@ -149,6 +158,7 @@
 					D344C3491EB648CE0007E788 = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = EBH83Y995B;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					D344C3521EB648CE0007E788 = {
@@ -198,6 +208,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D344C3661EB6494E0007E788 /* Animation.swift in Sources */,
+				D344C3671EB6494E0007E788 /* RunningAverage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,7 +217,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D344C3591EB648CE0007E788 /* SUtilityTests.swift in Sources */,
+				D344C36B1EB6496A0007E788 /* TestRunningAverage.swift in Sources */,
+				D344C36A1EB6496A0007E788 /* TestAnimation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +337,7 @@
 		D344C35F1EB648CE0007E788 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = EBH83Y995B;
@@ -337,6 +351,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.philiphubbard.SUtility;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -344,6 +359,7 @@
 		D344C3601EB648CE0007E788 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = EBH83Y995B;
@@ -364,6 +380,7 @@
 		D344C3621EB648CE0007E788 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = EBH83Y995B;
 				INFOPLIST_FILE = SUtilityTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -376,6 +393,7 @@
 		D344C3631EB648CE0007E788 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = EBH83Y995B;
 				INFOPLIST_FILE = SUtilityTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
