@@ -29,41 +29,40 @@ public class RunningAverage<T: FloatingPoint> {
     public init(capacity: Int, window: TimeInterval = 0.5) {
         self.capacity = capacity
         self.window = window
-        reset()
+        items = Array<Item>(repeating: Item(value: 0, time: nil), count: capacity)
     }
     
     public func add(value: T) {
         let now = CACurrentMediaTime()
-        if now - timeOfLastAdd > window {
-            reset()
-        }
-        timeOfLastAdd = now
-        
-        values[tail] = value
+        items[tail] = Item(value: value, time: now)
         tail = (tail + 1) % capacity
         count = min(count + 1, capacity)
+
+        var i = tail
+        while items[i].time == nil {
+            i = (i + 1) % capacity
+        }
+        
+        while let time = items[i].time, time < now - window {
+            items[i] = Item(value: 0, time: nil)
+            count -= 1
+            i = (i + 1) % capacity  
+        }
     }
     
     public func value() -> T {
         guard count > 0 else {
             return 0
         }
-        
-        var result: T = 0
-        for i in 0..<count {
-            result += values[i]
-        }
-        return result / T(count)
+        return items.reduce(0) { $0 + $1.value } / T(count)
     }
     
-    private func reset() {
-        values = Array<T>(repeating: 0, count: capacity)
-        count = 0
-        tail = 0
+    private struct Item {
+        var value: T
+        var time: TimeInterval?
     }
-
-    private var values: [T] = []
+    private var items: [Item]
     private var count: Int = 0
     private var tail: Int = 0
-    private var timeOfLastAdd: CFTimeInterval = 0
+
 }

@@ -53,28 +53,64 @@ class TestRunningAverage: XCTestCase {
             XCTAssertTrue(equal(avg.value(), secondValue, eps: eps))
         }
     }
-    
-    func testWindow() {
+ 
+    func testWindow1() {
+        let capacity = 5
+        let window: TimeInterval = 1.0
+        let avg1 = RunningAverage<Double>(capacity: capacity, window: window)
+        
+        let values = [10.0, 20.0, 30.0]
+        
+        for value in values {
+            avg1.add(value: value)
+        }
+        let expected = avg1.value()
+        
+        let avg2 = RunningAverage<Double>(capacity: capacity, window: window)
+
+        avg2.add(value: 123456.7)
+        sleep(UInt32(2.0 * window))
+
+        for value in values {
+            avg2.add(value: value)
+        }
+        let actual = avg2.value()
+
         let eps: Double = 1e-8
+        XCTAssertTrue(equal(actual, expected, eps: eps))
+    }
+    
+    func testWindow2() {
+        let values = [-11.1, 22.2, -33.3]
         
         let capacity = 5
-        let window: TimeInterval = 0.3
-        let avg = RunningAverage<Double>(capacity: capacity, window: window)
+        let window: TimeInterval = TimeInterval(values.count)
+        let avg1 = RunningAverage<Double>(capacity: capacity, window: window)
         
-        let firstValue: Double = -12345.6
-        
-        for _ in 1...(2 * capacity) {
-            avg.add(value: firstValue)
-            XCTAssertTrue(equal(avg.value(), firstValue, eps: eps))
+        for value in values {
+            avg1.add(value: value)
         }
+        let expected = avg1.value()
         
-        let period = UInt32(5.0 * window)
-        sleep(period)
+        let avg2 = RunningAverage<Double>(capacity: capacity, window: window)
         
-        let secondValue: Double = 98765.4
+        avg2.add(value: 1234.5)
+        avg2.add(value: 2345.6)
+        avg2.add(value: 3456.7)
+        sleep(1)
         
-        avg.add(value: secondValue)
-        XCTAssertTrue(equal(avg.value(), secondValue, eps: eps))
-    }
+        avg2.add(value: 4567.8)
+        avg2.add(value: 5678.9)
+        sleep(1)
 
+        for value in values {
+            avg2.add(value: value)
+            sleep(1)
+        }
+        let actual = avg2.value()
+        
+        let eps: Double = 1e-8
+        XCTAssertTrue(equal(actual, expected, eps: eps))
+    }
+    
 }
